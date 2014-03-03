@@ -21,10 +21,10 @@
 (defn build-province-from-option
   [option]
   (let [{content :content {value :value} :attrs} option]
-    {:name content :id value}))
+    {:name (first content) :id value}))
 
 (comment
-  (build-province-from-option {:content "Buenos Aires" :attrs {:value "1"}})
+  (build-province-from-option {:content '("Buenos Aires") :attrs {:value "1"}})
 )
 
 (defn provinces
