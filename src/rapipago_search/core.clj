@@ -2,23 +2,23 @@
   (use [net.cgrand.enlive-html :as html])
   (require [clj-http.client :as http]))
 
-(defn fetch-home
+(defn- fetch-home
   "Fetches the home page for RapiPago"
   []
   (html/html-resource
     (java.io.StringReader.
       (:body (http/get "http://www.rapipago.com.ar/rapipagoWeb/index.htm")))))
 
-(defn province-options
+(defn- province-options
   []
   (html/select (fetch-home) [:select#provinciaSuc :option]))
 
-(defn is-option-empty?
+(defn- is-option-empty?
   [option]
   (let [{{value :value} :attrs} option]
     (empty? value)))
 
-(defn build-province-from-option
+(defn- build-province-from-option
   [option]
   (let [{content :content {value :value} :attrs} option]
     {:name (first content) :id value}))
