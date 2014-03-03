@@ -1,12 +1,13 @@
 (ns rapipago-search.core
-  (use [net.cgrand.enlive-html :as html]))
-
+  (use [net.cgrand.enlive-html :as html])
+  (require [clj-http.client :as http]))
 
 (defn fetch-home
   "Fetches the home page for RapiPago"
   []
   (html/html-resource
-    (java.net.URL. "http://www.rapipago.com.ar/rapipagoWeb/index.htm")))
+    (java.io.StringReader.
+      (:body (http/get "http://www.rapipago.com.ar/rapipagoWeb/index.htm")))))
 
 (defn province-options
   []
@@ -31,4 +32,3 @@
   []
   (map build-province-from-option
        (filter (comp not is-option-empty?) (province-options))))
-
