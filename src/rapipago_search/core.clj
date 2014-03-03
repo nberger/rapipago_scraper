@@ -18,17 +18,50 @@
   (let [{{value :value} :attrs} option]
     (empty? value)))
 
-(defn- build-province-from-option
+(def is-option-present? (complement is-option-empty?))
+
+(defn- parse-option
   [option]
   (let [{content :content {value :value} :attrs} option]
     {:name (first content) :id value}))
 
 (comment
-  (build-province-from-option {:content '("Buenos Aires") :attrs {:value "1"}})
+  (parse-option {:content '("Buenos Aires") :attrs {:value "1"}})
+)
+
+(defn- fetch-cities-options
+  [province]
+  (let [url "http://www.rapipago.com.ar/rapipagoWeb/consultar-ciudades.htm"
+        province-id (:id province)]
+    (:body (http/get url
+                     {:query-params {:provinciaId province-id}}))))
+
+(comment
+  (fetch-cities-options (second (provinces)))
+)
+
+(defn- cities-options
+  [province]
+  (let [reader (java.io.StringReader. (fetch-cities-options province))
+        options-html (html/html-resource reader)]
+    (html/select options-html [:option])))
+
+(comment
+  (cities-options (second (provinces)))
 )
 
 (defn provinces
   "List of provinces where RapiPago has shops"
   []
-  (map build-province-from-option
-       (filter (comp not is-option-empty?) (province-options))))
+  (map parse-option
+       (filter is-option-present? (province-options))))
+
+(defn cities
+  "List of cities in a province"
+  [province]
+  (map parse-option
+       (filter is-option-present? (cities-options province))))
+
+(comment
+  (cities (second (provinces)))
+)
