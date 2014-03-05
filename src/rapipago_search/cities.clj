@@ -11,7 +11,7 @@
                      {:query-params {:provinciaId province-id}}))))
 
 (comment
-  (fetch-cities-options (second (provinces)))
+  (fetch-cities-options (second (cities)))
 )
 
 (defn- cities-options
@@ -21,7 +21,7 @@
     (html/select options-html [:option])))
 
 (comment
-  (cities-options (second (provinces)))
+  (cities-options (second (cities)))
 )
 
 (defn cities
@@ -31,5 +31,5 @@
        (filter is-option-present? (cities-options province))))
 
 (comment
-  (cities (second (provinces)))
+  (cities (second (cities)))
 )

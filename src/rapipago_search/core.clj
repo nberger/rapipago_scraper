@@ -13,7 +13,7 @@
                       {:form-params post-params}))))
 
 (comment
-  (def province (second (provinces/provinces)))
+  (def province (second (provinces/all)))
   (def city (first (cities/cities province)))
   (fetch-search-result {:province province :city city})
   )
