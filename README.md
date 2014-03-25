@@ -1,10 +1,11 @@
-# rapipago_search
+# Rapipago search API
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library to search for Rapipago stores. Rapipago is a payment system in Argentina.
+
+Stores info is taken from http://www.rapipago.com
 
 ## Usage
 
-FIXME
 
 ## License
 
