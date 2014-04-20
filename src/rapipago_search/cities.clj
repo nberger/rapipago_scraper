@@ -17,9 +17,10 @@
 
 (defn- cities-options
   [province]
-  (let [reader (java.io.StringReader. (fetch-cities-options province))
-        options-html (html/html-resource reader)]
-    (html/select options-html [:option])))
+  (-> province
+      fetch-cities-options
+      html/html-snippet
+      (html/select [:option])))
 
 (comment
 

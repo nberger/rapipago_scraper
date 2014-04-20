@@ -7,9 +7,8 @@
 (defn- fetch-home
   "Fetches the home page for RapiPago"
   []
-  (html/html-resource
-    (java.io.StringReader.
-      (:body (http/get "http://www.rapipago.com.ar/rapipagoWeb/index.htm")))))
+  (html/html-snippet
+    (:body (http/get "http://www.rapipago.com.ar/rapipagoWeb/index.htm"))))
 
 (defn- province-options
   []
@@ -26,3 +25,10 @@
   (filter #(= (string/lower-case province-name)
               (string/lower-case (:name %1)))
           (all)))
+
+(comment
+
+  (find-all)
+  (find-by-name "Corrientes")
+
+  )
