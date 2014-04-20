@@ -24,7 +24,7 @@
   [province-name]
   (filter #(= (string/lower-case province-name)
               (string/lower-case (:name %1)))
-          (all)))
+          (find-all)))
 
 (comment
 
