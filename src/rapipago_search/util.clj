@@ -5,8 +5,6 @@
   (let [{{value :value} :attrs} option]
     (empty? value)))
 
-(def is-option-present? (complement is-option-empty?))
-
 (defn parse-option
   [option]
   (let [{content :content {value :value} :attrs} option]

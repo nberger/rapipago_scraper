@@ -18,7 +18,7 @@
   "All provinces where RapiPago has shops"
   []
   (map parse-option
-       (filter is-option-present? (province-options))))
+       (rest (province-options))))
 
 (defn find-by-name
   [province-name]

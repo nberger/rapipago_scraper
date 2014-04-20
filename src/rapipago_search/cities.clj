@@ -32,7 +32,7 @@
   "Finds the cities in a province"
   [province]
   (map parse-option
-       (filter is-option-present? (cities-options province))))
+       (rest (cities-options province))))
 
 (comment
 
