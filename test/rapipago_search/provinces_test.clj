@@ -11,4 +11,5 @@
 (deftest province-by-name
   (testing "find a province given the name"
     (with-redefs [all stub-provinces-all]
-      (is (= [buenos-aires] (by-name "Buenos Aires"))))))
+      (is (= [buenos-aires] (by-name "Buenos Aires")))
+      (is (= [buenos-aires] (by-name "buenos aires"))))))

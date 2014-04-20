@@ -1,6 +1,7 @@
 (ns rapipago-search.provinces
   (require [net.cgrand.enlive-html :as html]
            [clj-http.client :as http]
+           [clojure.string :as string]
            [rapipago-search.util :refer :all]))
 
 (defn- fetch-home
@@ -22,4 +23,4 @@
 
 (defn by-name
   [province-name]
-  (filter #(= province-name (:name %1)) (all)))
+  (filter #(= (string/lower-case province-name) (string/lower-case (:name %1))) (all)))
