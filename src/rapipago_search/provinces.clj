@@ -15,12 +15,14 @@
   []
   (html/select (fetch-home) [:select#provinciaSuc :option]))
 
-(defn all
+(defn find-all
   "All provinces where RapiPago has shops"
   []
   (map parse-option
        (filter is-option-present? (province-options))))
 
-(defn by-name
+(defn find-by-name
   [province-name]
-  (filter #(= (string/lower-case province-name) (string/lower-case (:name %1))) (all)))
+  (filter #(= (string/lower-case province-name)
+              (string/lower-case (:name %1)))
+          (all)))
