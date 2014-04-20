@@ -1,17 +1,18 @@
 (ns rapipago-search.cities
   (require [net.cgrand.enlive-html :as html]
            [clj-http.client :as http]
-           [rapipago-search.util :refer :all]))
+           [rapipago-search.util :refer :all]
+           [rapipago-search.provinces :as provinces]))
 
 (defn- fetch-cities-options
-  [province]
-  (let [url "http://www.rapipago.com.ar/rapipagoWeb/consultar-ciudades.htm"
-        province-id (:id province)]
+  [{province-id :id}]
+  (let [url "http://www.rapipago.com.ar/rapipagoWeb/consultar-ciudades.htm"]
     (:body (http/get url
                      {:query-params {:provinciaId province-id}}))))
 
 (comment
-  (fetch-cities-options (second (cities)))
+  (def salta (first (provinces/by-name "SALTA")))
+  (fetch-cities-options salta)
 )
 
 (defn- cities-options
@@ -21,15 +22,19 @@
     (html/select options-html [:option])))
 
 (comment
-  (cities-options (second (cities)))
+
+  (cities-options salta)
+
 )
 
-(defn cities
-  "List of cities in a province"
+(defn find-in-province
+  "Finds the cities in a province"
   [province]
   (map parse-option
        (filter is-option-present? (cities-options province))))
 
 (comment
-  (cities (second (cities)))
+
+  (find-in-province salta)
+
 )
