@@ -4,6 +4,8 @@ A Clojure library to search for Rapipago stores. Rapipago is a payment system in
 
 Stores info is taken from http://www.rapipago.com
 
+[![Build Status](https://travis-ci.org/nberger/rapipago_search.svg?branch=master)](https://travis-ci.org/nberger/rapipago_search)
+
 ## Usage
 
 
