@@ -1,6 +1,6 @@
 (ns rapipago-search.cities-test
   (:require [clojure.test :refer :all]
-            [vcr-clj.clj-http :refer  [with-cassette]]
+            [vcr-clj.clj-http :refer [with-cassette]]
             [rapipago-search.cities :as cities]))
 
 (deftest find-in-province
