@@ -1,6 +1,7 @@
 (ns rapipago-search.core-test
+  (:import org.apache.http.util.EntityUtils)
   (:require [clojure.test :refer :all]
-            [vcr-clj.clj-http :refer [with-cassette]]
+            [vcr-clj.clj-http :refer [with-cassette] :as vcr]
             [rapipago-search.provinces :as provinces]
             [rapipago-search.cities :as cities]
             [rapipago-search.core :refer :all]))
@@ -21,6 +22,11 @@
 
 (deftest search-with-city-filter
   (with-cassette :search-with-city-filter
+    {:arg-key-fn (fn [req]
+                   (-> req
+                       (update-in [:body] #(when % (EntityUtils/toString %)))
+                       (select-keys (conj vcr/default-req-keys :body))))}
+
     (let [province (first (provinces/find-by-name "Corrientes"))
           city (->> province cities/find-in-province (filter #(= (:name %) "GOYA")) first)
           search-result (search {:province province :city city})]
