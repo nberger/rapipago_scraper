@@ -7,7 +7,7 @@
   (with-cassette :cities-in-salta
     (def salta {:id "A" :name "Salta"})
     (def salta-cities (cities/find-in-province salta))
+    (def names (map :name salta-cities))
     (is (> (count salta-cities) 5))
-    (is (every? (->> salta-cities (map :name) set) ["CAFAYATE" "EMBARCACION"]))))
-
+    (is (every? (set names) ["CAFAYATE" "EMBARCACION"]))))
 
