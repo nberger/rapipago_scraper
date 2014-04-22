@@ -24,6 +24,12 @@
     (let [province (first (provinces/find-by-name "Corrientes"))
           city (->> province cities/find-in-province (filter #(= (:name %) "GOYA")) first)
           search-result (search {:province province :city city})]
-      (is (= (count search-result) 3))
+      (is (= (count search-result) 4))
       (is (not-any? #{"SABA COMUNICACIONES"} (map :name search-result)))
-      (is (some #{"SUPERMERCADO JESUS"} (map :name search-result))))))
+      (is (some #{"SUPERMERCADO JESUS"} (map :name search-result))))
+    (let [province (first (provinces/find-by-name "Cordoba"))
+          city (->> province cities/find-in-province (filter #(= (:name %) "ALTA GRACIA")) first)
+          search-result (search {:province province :city city})]
+      (is (= (count search-result) 2))
+      (is (not-any? #{"SUPERMERCADO JESUS"} (map :name search-result)))
+      (is (some #{"FARMACIA DE NAPOLI"} (map :name search-result))))))
