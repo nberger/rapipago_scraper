@@ -6,17 +6,17 @@
            [rapipago-search.cities :as cities]))
 
 (defn- fetch-search-result
-  [{province :province city :city}]
-  (let [url "http://www.rapipago.com.ar/rapipagoWeb/suc-buscar.htm"
-        post-params {:provinciaSuc (:id province)
-                     :ciudadSuc (:id city)}]
-    (:body (http/post url
-                      {:form-params post-params}))))
+  [page {province :province city :city}]
+  (:body (http/post "http://www.rapipago.com.ar/rapipagoWeb/suc-buscar.htm"
+                    {:query-params {:pageNum page}
+                     :form-params {:provinciaSuc (:id province)
+                                   :listType "doPage"
+                                   :ciudadSuc (:id city)}})))
 
 (comment
   (def province (second (provinces/find-all)))
   (def city (first (cities/find-in-province province)))
-  (fetch-search-result {:province province :city city})
+  (fetch-search-result 2 {:province province :city city})
   )
 
 (defn- build-rapipago
@@ -42,14 +42,29 @@
   (parse-rapipagos result)
   )
 
-(defn search
-  [{province :province city :city :as filter :or {:province {} :city {}}}]
-  (let [result (fetch-search-result filter)
+(defn- fetch-rapipagos-page
+  [page filter]
+  (let [result (fetch-search-result page filter)
         rapipagos (parse-rapipagos result)]
     (map #(merge filter %1) rapipagos)))
 
-(comment
-        (search {:province province :city city})
+(def results-per-page 6)
 
-        (search {})
+(defn- search-from-page
+  [page filter]
+  (when-let [page-result (seq (fetch-rapipagos-page page filter))]
+    (lazy-cat page-result (search-from-page (inc page) filter))))
+
+(defn search
+  [filter]
+  (search-from-page 1 filter))
+
+(comment
+
+  (def province (second (provinces/find-all)))
+  (def banfield (first (filter #(= "BANFIELD" (:name %)) (cities/find-in-province province))))
+        (fetch-rapipagos-page 2 {:province province :city banfield})
+        (second (search {:province province :city banfield}))
+        (take 8 (search {:province province :city banfield}))
+        (take 9 (search {:province province :city banfield}))
   )
