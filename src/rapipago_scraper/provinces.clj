@@ -1,8 +1,8 @@
-(ns rapipago-search.provinces
+(ns rapipago-scraper.provinces
   (require [net.cgrand.enlive-html :as html]
            [clj-http.client :as http]
            [clojure.string :as string]
-           [rapipago-search.util :refer :all]))
+           [rapipago-scraper.util :refer :all]))
 
 (defn- fetch-home
   "Fetches the home page for RapiPago"

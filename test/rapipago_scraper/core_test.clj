@@ -1,9 +1,9 @@
-(ns rapipago-search.core-test
+(ns rapipago-scraper.core-test
   (:require [clojure.test :refer :all]
             [vcr-clj.clj-http :refer [with-cassette]]
-            [rapipago-search.provinces :as provinces]
-            [rapipago-search.cities :as cities]
-            [rapipago-search.core :refer :all]))
+            [rapipago-scraper.provinces :as provinces]
+            [rapipago-scraper.cities :as cities]
+            [rapipago-scraper.core :refer :all]))
 
 (deftest search-without-filter
   (with-cassette :search-without-filter
