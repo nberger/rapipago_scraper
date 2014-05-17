@@ -1,9 +1,9 @@
-(ns rapipago-search.core
+(ns rapipago-scraper.core
   (require [clojure.string :as string]
            [net.cgrand.enlive-html :as html]
            [clj-http.client :as http]
-           [rapipago-search.provinces :as provinces]
-           [rapipago-search.cities :as cities]))
+           [rapipago-scraper.provinces :as provinces]
+           [rapipago-scraper.cities :as cities]))
 
 (defn- fetch-search-result
   [page {province :province city :city}]

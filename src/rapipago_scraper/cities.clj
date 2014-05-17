@@ -1,8 +1,8 @@
-(ns rapipago-search.cities
+(ns rapipago-scraper.cities
   (require [net.cgrand.enlive-html :as html]
            [clj-http.client :as http]
-           [rapipago-search.util :refer :all]
-           [rapipago-search.provinces :as provinces]))
+           [rapipago-scraper.util :refer :all]
+           [rapipago-scraper.provinces :as provinces]))
 
 (defn- fetch-cities-options
   [{province-id :id}]

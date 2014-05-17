@@ -1,4 +1,4 @@
-(ns rapipago-search.util)
+(ns rapipago-scraper.util)
 
 (defn is-option-empty?
   [option]

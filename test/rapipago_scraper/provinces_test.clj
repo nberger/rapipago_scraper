@@ -1,6 +1,6 @@
-(ns rapipago-search.provinces-test
+(ns rapipago-scraper.provinces-test
   (:require [clojure.test :refer :all]
-            [rapipago-search.provinces :refer :all]))
+            [rapipago-scraper.provinces :refer :all]))
 
 (def buenos-aires {:name "Buenos Aires" :id 28})
 

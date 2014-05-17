@@ -1,6 +1,6 @@
-(defproject rapipago_search "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject rapipago_scraper "0.1.0-SNAPSHOT"
+  :description "Rapipago stores scraper. Scrapes from www.rapipago.com"
+  :url "http://github.com/nberger/rapipago_scraper"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
