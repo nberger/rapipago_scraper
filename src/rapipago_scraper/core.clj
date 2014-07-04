@@ -61,6 +61,9 @@
 
 (comment
 
+  (def capital (provinces/find-by-name "Capital federal"))
+  (take 140 (search {:province capital}))
+
   (def province (second (provinces/find-all)))
   (def banfield (first (filter #(= "BANFIELD" (:name %)) (cities/find-in-province province))))
         (fetch-rapipagos-page 2 {:province province :city banfield})

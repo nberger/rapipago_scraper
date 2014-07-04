@@ -23,10 +23,12 @@
 (defn find-by-name
   [province-name]
   (filter #(= (string/lower-case province-name)
-              (string/lower-case (:name %1)))
+              (string/lower-case (:name %)))
           (find-all)))
 
 (comment
+
+  (province-options)
 
   (find-all)
   (find-by-name "Corrientes")
