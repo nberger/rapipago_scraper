@@ -1,4 +1,4 @@
-(defproject rapipago_scraper "0.1.1"
+(defproject rapipago_scraper "0.1.1-SNAPSHOT"
   :description "Rapipago stores scraper. Scrapes from www.rapipago.com"
   :url "http://github.com/nberger/rapipago_scraper"
   :scm {:name "git"
