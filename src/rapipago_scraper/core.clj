@@ -38,7 +38,7 @@
     (map build-rapipago ids names addresses)))
 
 (comment
-  (def result (fetch-search-result {:province province :city city}))
+  (def result (fetch-search-result 1 {:province province :city city}))
   (parse-rapipagos result)
   )
 
