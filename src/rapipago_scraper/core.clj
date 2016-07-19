@@ -16,17 +16,17 @@
 (comment
   (def province (second (provinces/find-all)))
   (def city (first (cities/find-in-province province)))
-  (fetch-search-result 2 {:province province :city city})
-  )
+  (fetch-search-result 2 {:province province :city city}))
+
 
 (defn- build-rapipago
   [id-tag name-tag address-tag]
   (let [id (first (:content id-tag))
         name (first (:content name-tag))
         address (first (:content address-tag))]
-  {:id id
-   :name (string/trim name)
-   :address address}))
+   {:id id
+    :name (string/trim name)
+    :address address}))
 
 (defn- parse-rapipagos
   [rapipagos-html-result]
@@ -39,8 +39,8 @@
 
 (comment
   (def result (fetch-search-result 1 {:province province :city city}))
-  (parse-rapipagos result)
-  )
+  (parse-rapipagos result))
+
 
 (defn- fetch-rapipagos-page
   [page filter]
@@ -66,8 +66,7 @@
 
   (def province (second (provinces/find-all)))
   (def banfield (first (filter #(= "BANFIELD" (:name %)) (cities/find-in-province province))))
-        (fetch-rapipagos-page 2 {:province province :city banfield})
-        (second (search {:province province :city banfield}))
-        (take 8 (search {:province province :city banfield}))
-        (take 9 (search {:province province :city banfield}))
-  )
+  (fetch-rapipagos-page 2 {:province province :city banfield})
+  (second (search {:province province :city banfield}))
+  (take 8 (search {:province province :city banfield}))
+  (take 9 (search {:province province :city banfield})))
