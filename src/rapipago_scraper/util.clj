@@ -11,6 +11,4 @@
     {:name (first content) :id value}))
 
 (comment
-  (parse-option {:content '("Buenos Aires") :attrs {:value "1"}})
-)
-
+  (parse-option {:content '("Buenos Aires") :attrs {:value "1"}}))
