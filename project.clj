@@ -9,4 +9,4 @@
                  [clj-http "2.1.0"]
                  [enlive "1.1.6"]]
   :profiles {:dev
-             {:depedencies [[com.gfredericks/vcr-clj "0.4.6"]]}})
+             {:dependencies [[com.gfredericks/vcr-clj "0.4.6"]]}})
