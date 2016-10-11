@@ -31,6 +31,4 @@
   (province-options)
 
   (find-all)
-  (find-by-name "Corrientes")
-
-  )
+  (find-by-name "Corrientes"))
