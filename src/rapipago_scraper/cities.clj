@@ -12,8 +12,8 @@
 
 (comment
   (def salta (first (provinces/by-name "SALTA")))
-  (fetch-cities-options salta)
-)
+  (fetch-cities-options salta))
+
 
 (defn- cities-options
   [province]
@@ -24,9 +24,9 @@
 
 (comment
 
-  (cities-options salta)
+  (cities-options salta))
 
-)
+
 
 (defn find-in-province
   "Finds the cities in a province"
@@ -36,6 +36,4 @@
 
 (comment
 
-  (find-in-province salta)
-
-)
+  (find-in-province salta))
